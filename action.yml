@@ -1,0 +1,23 @@
+name: GitHub Pages Blazor WASM
+description: Prepare Blazor WASM for GitHub Pages
+inputs:
+  project-path:
+    description: Path of project (.csproj)
+    default: ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj
+  main-repo:
+    description: Set to true only when running this action from the default GitHub Pages repository ({ID}.github.io).
+    default: false
+runs:
+  using: composite
+  steps:
+    - run: dotnet restore ${{ inputs.project-path }}
+      shell: bash
+    - run: dotnet build ${{ inputs.project-path }} --no-restore -c Release
+      shell: bash
+    - run: dotnet publish ${{ inputs.project-path }} --no-build -c Release -o _out
+      shell: bash
+    - run: sed -i 's/base href="\/"/base href="\/${{ github.event.repository.name }}\/"/g' _out/wwwroot/index.html
+      shell: bash
+      if: ${{ inputs.main-repo }} == false
+    - run: touch _out/wwwroot/.nojekyll
+      shell: bash
