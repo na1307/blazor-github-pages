@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  test-non-main-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: GitHub Pages Blazor WASM
+        uses: ./
+        with:
+          project-path: Test/Test.csproj
+          main-repo: false
+      - name: Verify
+        run: Test/Verify.sh --non-main-repo ${{ github.event.repository.name }}
+
+  test-main-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: GitHub Pages Blazor WASM
+        uses: ./
+        with:
+          project-path: Test/Test.csproj
+          main-repo: true
+      - name: Verify
+        run: Test/Verify.sh --main-repo ${{ github.event.repository.name }}
