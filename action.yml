@@ -21,6 +21,6 @@ runs:
       shell: bash
     - run: sed -i 's/base href="\/"/base href="\/${{ github.event.repository.name }}\/"/g' _out/wwwroot/index.html
       shell: bash
-      if: ${{ inputs.main-repo }} == false
+      if: ${{ inputs.main-repo == 'false' }}
     - run: touch _out/wwwroot/.nojekyll
       shell: bash
