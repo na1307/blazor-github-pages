@@ -5,6 +5,8 @@ This action allows you to deploy your Blazor WASM app to GitHub Pages.
 Restore, build, and publish the project, modify index.html to fit the repository, and create a .nojekyll file.
 
 ## How to use
+First, set Repository Settings - Pages - Source to GitHub Actions.
+
 This action has two inputs and no output.
 
 `project-path`: Path of project (.csproj). Default is (repo name)/(repo name).csproj.
