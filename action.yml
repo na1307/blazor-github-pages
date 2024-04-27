@@ -1,5 +1,8 @@
 name: GitHub Pages Blazor WASM
 description: Prepare Blazor WASM for GitHub Pages
+branding:
+  icon: layout
+  color: purple
 inputs:
   project-path:
     description: Path of project (.csproj)
