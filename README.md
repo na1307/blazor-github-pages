@@ -56,6 +56,7 @@ jobs:
           dotnet-version: 8.0.x
       - name: Prepare Blazor WASM for GitHub Pages
         uses: na1307/blazor-github-pages@v1
+        id: prepare
         with:
           project-path: BluehillHomePage/BluehillHomePage.csproj
           main-repo: true
@@ -64,7 +65,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "_out/wwwroot/"
+          path: ${{ steps.prepare.outputs.wwwroot-path }}
 
   # Deployment job
   deploy:
