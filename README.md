@@ -7,11 +7,17 @@ Restore, build, and publish the project, modify index.html to fit the repository
 ## How to use
 First, set Repository Settings - Pages - Source to GitHub Actions.
 
-This action has two inputs and no output.
+This action has three inputs and one output.
 
-`project-path`: Path of project (.csproj). Default is (repo name)/(repo name).csproj.
+### Inputs
+`project-path`: Path of project (.csproj). Default is `(repo name)/(repo name).csproj`.
 
-`main-repo`: Set to true only when running this action from the default GitHub Pages repository ({ID}.github.io). Default is false.
+`publish-path`: Path to output in Publish step. It doesn't matter most of the time.
+
+`main-repo`: Set to `true` only when running this action from the default GitHub Pages repository (`{username}.github.io`).
+
+### Outputs
+`wwwroot-path`: The resulting `wwwroot` path. It must be passed to `path` in the `upload-pages-artifact` step.
 
 ## Example Workflow
 ```yml
