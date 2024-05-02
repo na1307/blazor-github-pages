@@ -13,6 +13,9 @@ inputs:
   main-repo:
     description: Set to true only when running this action from the default GitHub Pages repository ({ID}.github.io).
     default: false
+  fix-404:
+    description: Whether to apply repository-specific modifications to 404.html as well. This only takes effect when main-repo is false.
+    default: true
 outputs:
   wwwroot-path:
     description: Path of wwwroot
@@ -40,6 +43,11 @@ runs:
     - name: Modify index.html for this repository
       if: ${{ inputs.main-repo == 'false' }}
       run: sed -i 's/base href="\/"/base href="\/${{ github.event.repository.name }}\/"/g' ${{ steps.wwwroot-output.outputs.wwwroot }}/index.html
+      shell: bash
+
+    - name: Modify 404.html for this repository
+      if: ${{ inputs.main-repo == 'false' && inputs.fix-404 == 'true' }}
+      run: sed -i 's/\/?p=\//\/${{ github.event.repository.name }}\/?p=\//g' ${{ steps.wwwroot-output.outputs.wwwroot }}/404.html
       shell: bash
 
     - name: Create .nojekyll
