@@ -31,4 +31,6 @@ fi
 
 if [ $MAINREPO == false ] && [ $FIX404 == true ]; then
     grep -i "/$3/?p=/" _out/wwwroot/404.html > /dev/null
+else
+    ! grep -i "/$3/?p=/" _out/wwwroot/404.html > /dev/null
 fi

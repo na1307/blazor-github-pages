@@ -21,6 +21,7 @@ jobs:
         with:
           project-path: Test/Test.csproj
           main-repo: false
+          fix-404: true
       - name: Verify
         run: Test/Verify.sh --non-main-repo --fix-404 ${{ github.event.repository.name }}
 
@@ -38,6 +39,7 @@ jobs:
         with:
           project-path: Test/Test.csproj
           main-repo: true
+          fix-404: true
       - name: Verify
         run: Test/Verify.sh --main-repo --fix-404 ${{ github.event.repository.name }}
 
@@ -55,6 +57,7 @@ jobs:
         with:
           project-path: Test/Test.csproj
           main-repo: false
+          fix-404: false
       - name: Verify
         run: Test/Verify.sh --non-main-repo --no-fix-404 ${{ github.event.repository.name }}
 
@@ -72,5 +75,6 @@ jobs:
         with:
           project-path: Test/Test.csproj
           main-repo: true
+          fix-404: false
       - name: Verify
         run: Test/Verify.sh --main-repo --no-fix-404 ${{ github.event.repository.name }}
