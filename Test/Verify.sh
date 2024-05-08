@@ -1,17 +1,17 @@
 #!/usr/bin/bash
 
-if [ $1 == "--non-main-repo" ]; then
+if [ $1 == "--main-repo=false" ]; then
     MAINREPO=false;
-elif [ $1 == "--main-repo" ]; then
+elif [ $1 == "--main-repo=true" ]; then
     MAINREPO=true;
 else
     echo Unknown Argument.
     exit 1
 fi
 
-if [ $2 == "--no-fix-404" ]; then
+if [ $2 == "--fix-404=false" ]; then
     FIX404=false;
-elif [ $2 == "--fix-404" ]; then
+elif [ $2 == "--fix-404=true" ]; then
     FIX404=true;
 else
     echo Unknown Argument.

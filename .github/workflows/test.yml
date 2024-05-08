@@ -8,73 +8,25 @@ on:
 
 jobs:
   test-non-main-repo-fix-404:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-      - name: GitHub Pages Blazor WASM
-        uses: ./
-        with:
-          project-path: Test/Test.csproj
-          main-repo: false
-          fix-404: true
-      - name: Verify
-        run: Test/Verify.sh --non-main-repo --fix-404 ${{ github.event.repository.name }}
+    uses: ./.github/workflows/test-core.yml
+    with:
+      main-repo: false
+      fix-404: true
 
   test-main-repo-fix-404:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-      - name: GitHub Pages Blazor WASM
-        uses: ./
-        with:
-          project-path: Test/Test.csproj
-          main-repo: true
-          fix-404: true
-      - name: Verify
-        run: Test/Verify.sh --main-repo --fix-404 ${{ github.event.repository.name }}
+    uses: ./.github/workflows/test-core.yml
+    with:
+      main-repo: true
+      fix-404: true
 
   test-non-main-repo-no-fix-404:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-      - name: GitHub Pages Blazor WASM
-        uses: ./
-        with:
-          project-path: Test/Test.csproj
-          main-repo: false
-          fix-404: false
-      - name: Verify
-        run: Test/Verify.sh --non-main-repo --no-fix-404 ${{ github.event.repository.name }}
+    uses: ./.github/workflows/test-core.yml
+    with:
+      main-repo: false
+      fix-404: false
 
   test-main-repo-no-fix-404:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-      - name: GitHub Pages Blazor WASM
-        uses: ./
-        with:
-          project-path: Test/Test.csproj
-          main-repo: true
-          fix-404: false
-      - name: Verify
-        run: Test/Verify.sh --main-repo --no-fix-404 ${{ github.event.repository.name }}
+    uses: ./.github/workflows/test-core.yml
+    with:
+      main-repo: true
+      fix-404: false

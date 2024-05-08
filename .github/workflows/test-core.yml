@@ -1,0 +1,30 @@
+name: Test Core
+
+on:
+  workflow_call:
+    inputs:
+      main-repo:
+        required: true
+        type: boolean
+      fix-404:
+        required: true
+        type: boolean
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: GitHub Pages Blazor WASM
+        uses: ./
+        with:
+          project-path: Test/Test.csproj
+          main-repo: ${{ inputs.main-repo }}
+          fix-404: ${{ inputs.fix-404 }}
+      - name: Verify
+        run: Test/Verify.sh --main-repo=${{ inputs.main-repo }} --fix-404=${{ inputs.fix-404 }} ${{ github.event.repository.name }}
