@@ -1,0 +1,42 @@
+{
+  "name": "blazor-github-page",
+  "description": "GitHub Pages Blazor WASM",
+  "version": "2.0.0",
+  "author": "",
+  "private": true,
+  "homepage": "https://github.com/na1307/blazor-github-pages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/na1307/blazor-github-pages.git"
+  },
+  "bugs": {
+    "url": "https://github.com/na1307/blazor-github-pages/issues"
+  },
+  "keywords": [
+    "actions",
+    "blazor",
+    "pages"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "package": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "package:watch": "npm run package -- --watch"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.1",
+    "@types/git-repo-name": "^1.0.4",
+    "git-repo-name": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@vercel/ncc": "^0.38.1",
+    "typescript": "^5.4.5"
+  }
+}

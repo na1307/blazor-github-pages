@@ -1,55 +1,34 @@
 name: GitHub Pages Blazor WASM
 description: Prepare Blazor WASM for GitHub Pages
+
 branding:
   icon: layout
   color: purple
+
 inputs:
   project-path:
     description: Path of project (.csproj)
-    default: ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj
+    default:
+      ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj
   publish-path:
     description: Path to output in Publish step
     default: _out
   main-repo:
-    description: Set to true only when running this action from the default GitHub Pages repository ({ID}.github.io).
+    description:
+      Set to true only when running this action from the default GitHub Pages
+      repository ({ID}.github.io).
     default: false
   fix-404:
-    description: Whether to apply repository-specific modifications to 404.html as well. This only takes effect when main-repo is false.
+    description:
+      Whether to apply repository-specific modifications to 404.html as well.
+      This only takes effect when main-repo is false.
     default: true
+
 outputs:
   wwwroot-path:
     description: Path of wwwroot
     value: ${{ steps.wwwroot-output.outputs.wwwroot }}
+
 runs:
-  using: composite
-  steps:
-    - name: Restore dependencies
-      run: dotnet restore ${{ inputs.project-path }}
-      shell: bash
-
-    - name: Build
-      run: dotnet build ${{ inputs.project-path }} --no-restore -c Release
-      shell: bash
-
-    - name: Publish
-      run: dotnet publish ${{ inputs.project-path }} --no-build -c Release -o ${{ inputs.publish-path }}
-      shell: bash
-
-    - name: wwwroot-path output
-      id: wwwroot-output
-      run: echo "wwwroot=$(echo ${{ inputs.publish-path }}/wwwroot)" >> $GITHUB_OUTPUT
-      shell: bash
-
-    - name: Modify index.html for this repository
-      if: ${{ inputs.main-repo == 'false' }}
-      run: sed -i 's/base href="\/"/base href="\/${{ github.event.repository.name }}\/"/g' ${{ steps.wwwroot-output.outputs.wwwroot }}/index.html
-      shell: bash
-
-    - name: Modify 404.html for this repository
-      if: ${{ inputs.main-repo == 'false' && inputs.fix-404 == 'true' }}
-      run: sed -i 's/\/?p=\//\/${{ github.event.repository.name }}\/?p=\//g' ${{ steps.wwwroot-output.outputs.wwwroot }}/404.html
-      shell: bash
-
-    - name: Create .nojekyll
-      run: touch ${{ steps.wwwroot-output.outputs.wwwroot }}/.nojekyll
-      shell: bash
+  using: node20
+  main: dist/index.js
