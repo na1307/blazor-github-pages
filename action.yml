@@ -11,6 +11,7 @@ inputs:
     required: true
   publish-path:
     description: Path to output in Publish step
+    required: true
     default: _out
   main-repo:
     description:

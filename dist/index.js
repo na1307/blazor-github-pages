@@ -29940,72 +29940,80 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(7484));
 const exec = __importStar(__nccwpck_require__(5236));
 const fs = __importStar(__nccwpck_require__(3024));
+const path = __importStar(__nccwpck_require__(6760));
 const github_1 = __nccwpck_require__(3228);
 async function main() {
+    const dotnet = 'dotnet';
+    // Validate `dotnet` installation
     try {
-        const projectPath = core.getInput('project-path', { required: true, trimWhitespace: true });
-        const publishPath = core.getInput('publish-path');
-        const dotnet = 'dotnet';
-        core.info(`Project Path: ${projectPath}`);
-        if (!fs.existsSync(projectPath)) {
-            core.setFailed('The project not found.');
-            return;
-        }
-        core.info('Restoring dependencies...');
-        const restoreResult = await exec.exec(dotnet, [
-            'restore',
-            `"${projectPath}"`
-        ]);
-        if (restoreResult) {
-            core.setFailed('Restore failed.');
-            return;
-        }
-        core.info('Building...');
-        const buildResult = await exec.exec(dotnet, [
-            'build',
-            `"${projectPath}"`,
-            '--no-restore',
-            '-c',
-            'Release'
-        ]);
-        if (buildResult) {
-            core.setFailed('Build failed.');
-            return;
-        }
-        core.info('Publishing...');
-        const publishResult = await exec.exec(dotnet, [
-            'publish',
-            `"${projectPath}"`,
-            '--no-build',
-            '-c',
-            'Release',
-            '-o',
-            `"${publishPath}"`
-        ]);
-        if (publishResult) {
-            core.setFailed('Publish failed.');
-            return;
-        }
-        core.info(`wwwroot Path: ${publishPath}/wwwroot`);
-        core.setOutput('wwwroot-path', `${publishPath}/wwwroot`);
-        if (github_1.context.repo.repo !== `${github_1.context.repo.owner}.github.io`) {
-            core.info('Modifying index.html for this repository...');
-            let indexFileContent = fs.readFileSync(`${publishPath}/wwwroot/index.html`, 'utf8');
-            indexFileContent = indexFileContent.replaceAll('base href="/"', `base href="/${github_1.context.repo.repo}/"`);
-            fs.writeFileSync(`${publishPath}/wwwroot/index.html`, indexFileContent);
-            if (fs.existsSync(`${publishPath}/wwwroot/404.html`)) {
-                core.info('Modifying 404.html for this repository...');
-                let fourFileContent = fs.readFileSync(`${publishPath}/wwwroot/404.html`, 'utf8');
-                fourFileContent = fourFileContent.replaceAll('/?p=/', `/${github_1.context.repo.repo}/?p=/`);
-                fs.writeFileSync(`${publishPath}/wwwroot/404.html`, fourFileContent);
-            }
-        }
-        //core.info('Creating .nojekyll...');
-        //fs.writeFileSync(`${publishPath}/wwwroot/.nojekyll`, '');
+        await exec.exec(dotnet, ['--info'], { silent: true });
     }
     catch (error) {
-        if (error instanceof Error) {
-            core.setFailed(error);
+        core.setFailed(`dotnet command failed (may be not found): ${error.message}`);
+        return;
+    }
+    // Get Project path
+    const projectPath = core.getInput('project-path', { required: true, trimWhitespace: true });
+    const absoluteProjectPath = path.resolve(path.join('.', projectPath));
+    core.info(`Project Path: ${projectPath}`);
+    // Check project exists
+    if (!fs.existsSync(absoluteProjectPath)) {
+        core.setFailed(`The project '${projectPath}' not found.`);
+        return;
+    }
+    // Restore dependencies
+    core.info('Restoring dependencies...');
+    try {
+        await exec.exec(dotnet, ['restore', `"${absoluteProjectPath}"`]);
+    }
+    catch (error) {
+        core.setFailed(`Restore failed: ${error.message}`);
+        return;
+    }
+    // Build
+    core.info('Building...');
+    try {
+        await exec.exec(dotnet, ['build', `"${absoluteProjectPath}"`, '--no-restore', '-c', 'Release']);
+    }
+    catch (error) {
+        core.setFailed(`Build failed: ${error.message}`);
+        return;
+    }
+    // Get Publish path
+    const publishPath = core.getInput('publish-path');
+    const absolutePublishPath = path.resolve(path.join('.', publishPath));
+    // Publish
+    core.info('Publishing...');
+    try {
+        await exec.exec(dotnet, ['publish', `"${absoluteProjectPath}"`, '--no-build', '-c', 'Release', '-o', `"${absolutePublishPath}"`]);
+    }
+    catch (error) {
+        core.setFailed(`Publish failed: ${error.message}`);
+        return;
+    }
+    // wwwroot
+    const wwwroot = path.join(publishPath, 'wwwroot');
+    const absolutewwwroot = path.join(absolutePublishPath, 'wwwroot');
+    // wwwroot exists
+    if (!fs.existsSync(absolutewwwroot)) {
+        core.setFailed(`wwwroot directory not found`);
+        return;
+    }
+    core.info(`wwwroot Path: ${wwwroot}`);
+    core.setOutput('wwwroot-path', wwwroot);
+    // Check if the repository is not the default GitHub Pages repo
+    if (github_1.context.repo.repo !== `${github_1.context.repo.owner}.github.io`) {
+        core.info('Modifying index.html for this repository...');
+        const indexhtml = path.join(absolutewwwroot, 'index.html');
+        const indexFileContent = fs.readFileSync(indexhtml, 'utf8')
+            .replaceAll('base href="/"', `base href="/${github_1.context.repo.repo}/"`);
+        fs.writeFileSync(indexhtml, indexFileContent);
+        const fourohfourhtml = path.join(absolutewwwroot, '404.html');
+        if (fs.existsSync(fourohfourhtml)) {
+            core.info('Modifying 404.html for this repository...');
+            const fourFileContent = fs.readFileSync(fourohfourhtml, 'utf8')
+                .replaceAll('/?p=/', `/${github_1.context.repo.repo}/?p=/`);
+            fs.writeFileSync(fourohfourhtml, fourFileContent);
         }
     }
 }
@@ -30131,6 +30139,14 @@ module.exports = require("node:events");
 
 "use strict";
 module.exports = require("node:fs");
+
+/***/ }),
+
+/***/ 6760:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:path");
 
 /***/ }),
 
