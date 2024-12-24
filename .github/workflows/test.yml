@@ -7,28 +7,37 @@ on:
     branches: ["main"]
 
 jobs:
-  test-non-main-repo-with-404:
-    uses: ./.github/workflows/test-core.yml
-    with:
-      main-repo: false
-      with-404: true
+  test-typescript:
+    name: TypeScript Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Jest Tests
+        run: npm run ci-test
 
-  test-main-repo-with-404:
-    uses: ./.github/workflows/test-core.yml
-    with:
-      mock-repo: na1307/na1307.github.io
-      main-repo: true
-      with-404: true
-
-  test-non-main-repo-without-404:
-    uses: ./.github/workflows/test-core.yml
-    with:
-      main-repo: false
-      with-404: false
-
-  test-main-repo-without-404:
-    uses: ./.github/workflows/test-core.yml
-    with:
-      mock-repo: na1307/na1307.github.io
-      main-repo: true
-      with-404: false
+  test-action:
+    name: GitHub Actions Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - name: GitHub Pages Blazor WASM
+        uses: ./
+        with:
+          project-path: TestProject/TestProject.csproj
