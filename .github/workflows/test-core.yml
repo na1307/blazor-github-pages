@@ -2,18 +2,26 @@ name: Test Core
 
 on:
   workflow_call:
-    #inputs:
-      #main-repo:
-        #required: true
-        #type: boolean
-      #fix-404:
-        #required: true
-        #type: boolean
+    inputs:
+      mock-repo:
+        required: false
+        type: string
+      main-repo:
+        required: true
+        type: boolean
+      with-404:
+        required: true
+        type: boolean
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Override GITHUB_REPOSITORY
+        if: ${{ inputs.mock-repo }}
+        run: |
+          echo "Simulating a different repository"
+          echo "GITHUB_REPOSITORY=${{ inputs.mock-repo }}" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup .NET
@@ -24,8 +32,8 @@ jobs:
         uses: ./
         with:
           project-path: Test/Test.csproj
-          #main-repo: ${{ inputs.main-repo }}
-          #fix-404: ${{ inputs.fix-404 }}
+      - name: Delete 404
+        if: ${{ inputs.with-404 == false }}
+        run: rm -f _out/wwwroot/404.html
       - name: Verify
-        #run: Test/Verify.sh --main-repo=${{ inputs.main-repo }} --fix-404=${{ inputs.fix-404 }} ${{ github.event.repository.name }}
-        run: Test/Verify.sh ${{ github.event.repository.name }}
+        run: Test/Verify.sh --main-repo=${{ inputs.main-repo }} ${{ github.event.repository.name }}

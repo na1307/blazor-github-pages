@@ -7,29 +7,28 @@ on:
     branches: ["main"]
 
 jobs:
-  #test-non-main-repo-fix-404:
-    #uses: ./.github/workflows/test-core.yml
-    #with:
-      #main-repo: false
-      #fix-404: true
-
-  #test-main-repo-fix-404:
-    #uses: ./.github/workflows/test-core.yml
-    #with:
-      #main-repo: true
-      #fix-404: true
-
-  #test-non-main-repo-no-fix-404:
-    #uses: ./.github/workflows/test-core.yml
-    #with:
-      #main-repo: false
-      #fix-404: false
-
-  #test-main-repo-no-fix-404:
-    #uses: ./.github/workflows/test-core.yml
-    #with:
-      #main-repo: true
-      #fix-404: false
-
-  test:
+  test-non-main-repo-with-404:
     uses: ./.github/workflows/test-core.yml
+    with:
+      main-repo: false
+      with-404: true
+
+  test-main-repo-with-404:
+    uses: ./.github/workflows/test-core.yml
+    with:
+      mock-repo: na1307/na1307.github.io
+      main-repo: true
+      with-404: true
+
+  test-non-main-repo-without-404:
+    uses: ./.github/workflows/test-core.yml
+    with:
+      main-repo: false
+      with-404: false
+
+  test-main-repo-without-404:
+    uses: ./.github/workflows/test-core.yml
+    with:
+      mock-repo: na1307/na1307.github.io
+      main-repo: true
+      with-404: false
