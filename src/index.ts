@@ -17,12 +17,11 @@ async function main(): Promise<void> {
 
     // Get Project path
     const projectPath = core.getInput('project-path', {required: true, trimWhitespace: true});
-    const absoluteProjectPath = path.resolve(path.join('.', projectPath));
 
     core.info(`Project Path: ${projectPath}`);
 
     // Check project exists
-    if (!fs.existsSync(absoluteProjectPath)) {
+    if (!fs.existsSync(projectPath)) {
         core.setFailed(`The project '${projectPath}' not found.`);
         return;
     }
@@ -31,7 +30,7 @@ async function main(): Promise<void> {
     core.info('Restoring dependencies...');
 
     try {
-        await exec.exec(dotnet, ['restore', `"${absoluteProjectPath}"`]);
+        await exec.exec(dotnet, ['restore', `"${projectPath}"`]);
     } catch (error: any) {
         core.setFailed(`Restore failed: ${error.message}`);
         return;
@@ -41,7 +40,7 @@ async function main(): Promise<void> {
     core.info('Building...');
 
     try {
-        await exec.exec(dotnet, ['build', `"${absoluteProjectPath}"`, '--no-restore', '-c', 'Release']);
+        await exec.exec(dotnet, ['build', `"${projectPath}"`, '--no-restore', '-c', 'Release']);
     } catch (error: any) {
         core.setFailed(`Build failed: ${error.message}`);
         return;
@@ -49,13 +48,12 @@ async function main(): Promise<void> {
 
     // Get Publish path
     const publishPath = core.getInput('publish-path');
-    const absolutePublishPath = path.resolve(path.join('.', publishPath));
     
     // Publish
     core.info('Publishing...');
 
     try {
-        await exec.exec(dotnet, ['publish', `"${absoluteProjectPath}"`, '--no-build', '-c', 'Release', '-o', `"${absolutePublishPath}"`]);
+        await exec.exec(dotnet, ['publish', `"${projectPath}"`, '--no-build', '-c', 'Release', '-o', `"${publishPath}"`]);
     } catch (error: any) {
         core.setFailed(`Publish failed: ${error.message}`);
         return;
@@ -63,10 +61,9 @@ async function main(): Promise<void> {
 
     // wwwroot
     const wwwroot = path.join(publishPath, 'wwwroot');
-    const absolutewwwroot = path.join(absolutePublishPath, 'wwwroot');
 
     // wwwroot exists
-    if (!fs.existsSync(absolutewwwroot)) {
+    if (!fs.existsSync(wwwroot)) {
         core.setFailed(`wwwroot directory not found`);
         return;
     }
@@ -78,13 +75,13 @@ async function main(): Promise<void> {
     if (context.repo.repo !== `${context.repo.owner}.github.io`) {
         core.info('Modifying index.html for this repository...');
 
-        const indexhtml = path.join(absolutewwwroot, 'index.html');
+        const indexhtml = path.join(wwwroot, 'index.html');
         const indexFileContent = fs.readFileSync(indexhtml, 'utf8')
             .replaceAll('base href="/"', `base href="/${context.repo.repo}/"`);
 
         fs.writeFileSync(indexhtml, indexFileContent);
 
-        const fourohfourhtml = path.join(absolutewwwroot, '404.html');
+        const fourohfourhtml = path.join(wwwroot, '404.html');
 
         if (fs.existsSync(fourohfourhtml)) {
             core.info('Modifying 404.html for this repository...');

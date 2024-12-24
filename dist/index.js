@@ -29954,17 +29954,16 @@ async function main() {
     }
     // Get Project path
     const projectPath = core.getInput('project-path', { required: true, trimWhitespace: true });
-    const absoluteProjectPath = path.resolve(path.join('.', projectPath));
     core.info(`Project Path: ${projectPath}`);
     // Check project exists
-    if (!fs.existsSync(absoluteProjectPath)) {
+    if (!fs.existsSync(projectPath)) {
         core.setFailed(`The project '${projectPath}' not found.`);
         return;
     }
     // Restore dependencies
     core.info('Restoring dependencies...');
     try {
-        await exec.exec(dotnet, ['restore', `"${absoluteProjectPath}"`]);
+        await exec.exec(dotnet, ['restore', `"${projectPath}"`]);
     }
     catch (error) {
         core.setFailed(`Restore failed: ${error.message}`);
@@ -29973,7 +29972,7 @@ async function main() {
     // Build
     core.info('Building...');
     try {
-        await exec.exec(dotnet, ['build', `"${absoluteProjectPath}"`, '--no-restore', '-c', 'Release']);
+        await exec.exec(dotnet, ['build', `"${projectPath}"`, '--no-restore', '-c', 'Release']);
     }
     catch (error) {
         core.setFailed(`Build failed: ${error.message}`);
@@ -29981,11 +29980,10 @@ async function main() {
     }
     // Get Publish path
     const publishPath = core.getInput('publish-path');
-    const absolutePublishPath = path.resolve(path.join('.', publishPath));
     // Publish
     core.info('Publishing...');
     try {
-        await exec.exec(dotnet, ['publish', `"${absoluteProjectPath}"`, '--no-build', '-c', 'Release', '-o', `"${absolutePublishPath}"`]);
+        await exec.exec(dotnet, ['publish', `"${projectPath}"`, '--no-build', '-c', 'Release', '-o', `"${publishPath}"`]);
     }
     catch (error) {
         core.setFailed(`Publish failed: ${error.message}`);
@@ -29993,9 +29991,8 @@ async function main() {
     }
     // wwwroot
     const wwwroot = path.join(publishPath, 'wwwroot');
-    const absolutewwwroot = path.join(absolutePublishPath, 'wwwroot');
     // wwwroot exists
-    if (!fs.existsSync(absolutewwwroot)) {
+    if (!fs.existsSync(wwwroot)) {
         core.setFailed(`wwwroot directory not found`);
         return;
     }
@@ -30004,11 +30001,11 @@ async function main() {
     // Check if the repository is not the default GitHub Pages repo
     if (github_1.context.repo.repo !== `${github_1.context.repo.owner}.github.io`) {
         core.info('Modifying index.html for this repository...');
-        const indexhtml = path.join(absolutewwwroot, 'index.html');
+        const indexhtml = path.join(wwwroot, 'index.html');
         const indexFileContent = fs.readFileSync(indexhtml, 'utf8')
             .replaceAll('base href="/"', `base href="/${github_1.context.repo.repo}/"`);
         fs.writeFileSync(indexhtml, indexFileContent);
-        const fourohfourhtml = path.join(absolutewwwroot, '404.html');
+        const fourohfourhtml = path.join(wwwroot, '404.html');
         if (fs.existsSync(fourohfourhtml)) {
             core.info('Modifying 404.html for this repository...');
             const fourFileContent = fs.readFileSync(fourohfourhtml, 'utf8')

@@ -36,4 +36,15 @@
 #fi
 
 grep -i "base href=\"/$1/\"" _out/wwwroot/index.html > /dev/null
+
+if [ $? -ne 0 ]; then
+  echo index.html verify failed.
+  exit 1
+fi
+
 grep -i "/$1/?p=/" _out/wwwroot/404.html > /dev/null
+
+if [ $? -ne 0 ]; then
+  echo 404.html verify failed.
+  exit 1
+fi
