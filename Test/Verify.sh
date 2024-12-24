@@ -36,4 +36,4 @@
 #fi
 
 grep -i "base href=\"/$1/\"" _out/wwwroot/index.html > /dev/null
-! grep -i "/$1/?p=/" _out/wwwroot/404.html > /dev/null
+grep -i "/$1/?p=/" _out/wwwroot/404.html > /dev/null
