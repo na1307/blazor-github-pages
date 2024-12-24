@@ -1,0 +1,933 @@
+# 상위 디렉터리에서 .editorconfig 설정을 상속하려면 아래 행을 제거하세요.
+root = true
+
+# C# 파일
+[*.cs]
+
+#### Bluehill's config ####
+
+### Code style rules ###
+
+## Errors ##
+
+# Simplify name
+dotnet_diagnostic.IDE0001.severity = error
+
+# Simplify member access
+dotnet_diagnostic.IDE0002.severity = error
+
+# Remove this or Me qualification
+dotnet_diagnostic.IDE0003.severity = error
+
+# Remove unnecessary cast
+dotnet_diagnostic.IDE0004.severity = error
+
+# Force braces
+dotnet_diagnostic.IDE0011.severity = error
+
+# Simplify 'default' expression
+dotnet_diagnostic.IDE0034.severity = error
+
+# Order modifiers
+dotnet_diagnostic.IDE0036.severity = error
+
+# Add accessibility modifiers
+dotnet_diagnostic.IDE0040.severity = error
+
+# Use language keywords instead of framework type
+dotnet_diagnostic.IDE0049.severity = error
+
+# Use compound assignment
+dotnet_diagnostic.IDE0054.severity = error
+
+# Force formatting
+dotnet_diagnostic.IDE0055.severity = error
+
+# Usings must be at the top of the file
+dotnet_diagnostic.IDE0065.severity = error
+
+# Use coalesce compound assignment
+dotnet_diagnostic.IDE0074.severity = error
+
+# Simplify new expression
+dotnet_diagnostic.IDE0090.severity = error
+
+# Use file-scoped namespace
+dotnet_diagnostic.IDE0161.severity = error
+
+# Allow blank lines between consecutive braces
+dotnet_diagnostic.IDE2002.severity = error
+
+# Allow statement immediately after block
+dotnet_diagnostic.IDE2003.severity = error
+
+## Warnings ##
+
+# Use var instead of explicit type
+dotnet_diagnostic.IDE0007.severity = warning
+
+# Use object initializers
+dotnet_diagnostic.IDE0017.severity = warning
+
+# Inline variable declaration
+dotnet_diagnostic.IDE0018.severity = warning
+
+# Use pattern matching to avoid 'as' followed by a 'null' check
+dotnet_diagnostic.IDE0019.severity = warning
+
+# Use pattern matching to avoid is check followed by a cast (with variable)
+dotnet_diagnostic.IDE0020.severity = warning
+
+# Use collection initializers or expressions
+dotnet_diagnostic.IDE0028.severity = warning
+
+# Null check can be simplified (ternary conditional check)
+dotnet_diagnostic.IDE0029.severity = warning
+
+# Null check can be simplified (nullable ternary conditional check)
+dotnet_diagnostic.IDE0030.severity = warning
+
+# Use null propagation
+dotnet_diagnostic.IDE0031.severity = warning
+
+# Use auto-implemented property
+dotnet_diagnostic.IDE0032.severity = warning
+
+# Use explicitly provided tuple name
+dotnet_diagnostic.IDE0033.severity = warning
+
+# Use inferred member names
+dotnet_diagnostic.IDE0037.severity = warning
+
+# Use pattern matching to avoid is check followed by a cast (without variable)
+dotnet_diagnostic.IDE0038.severity = warning
+
+# Use 'is null' check
+dotnet_diagnostic.IDE0041.severity = warning
+
+# Use simple 'using' statement
+dotnet_diagnostic.IDE0063.severity = warning
+
+# Use switch expression
+dotnet_diagnostic.IDE0066.severity = warning
+
+# Simplify interpolation
+dotnet_diagnostic.IDE0071.severity = warning
+
+# Use pattern matching
+dotnet_diagnostic.IDE0078.severity = warning
+
+# Remove unnecessary suppression operator
+dotnet_diagnostic.IDE0080.severity = warning
+
+# Convert typeof to nameof
+dotnet_diagnostic.IDE0082.severity = warning
+
+# Use pattern matching
+dotnet_diagnostic.IDE0083.severity = warning
+
+# Remove unnecessary discard
+dotnet_diagnostic.IDE0110.severity = warning
+
+# Prefer 'null' check over type check
+dotnet_diagnostic.IDE0150.severity = warning
+
+# Simplify property pattern
+dotnet_diagnostic.IDE0170.severity = warning
+
+# Remove unnecessary lambda expression
+dotnet_diagnostic.IDE0200.severity = warning
+
+# Add explicit cast in foreach loop
+dotnet_diagnostic.IDE0220.severity = warning
+
+# Use UTF-8 string literal
+dotnet_diagnostic.IDE0230.severity = warning
+
+# Use pattern matching
+dotnet_diagnostic.IDE0260.severity = warning
+
+# Null check can be simplified (if null check)
+dotnet_diagnostic.IDE0270.severity = warning
+
+# Use 'nameof'
+dotnet_diagnostic.IDE0280.severity = warning
+
+# Use collection expression for array
+dotnet_diagnostic.IDE0300.severity = warning
+
+# Use collection expression for empty
+dotnet_diagnostic.IDE0301.severity = warning
+
+# Use collection expression for stackalloc
+dotnet_diagnostic.IDE0302.severity = warning
+
+# Use collection expression for Create()
+dotnet_diagnostic.IDE0303.severity = warning
+
+# Use collection expression for builder
+dotnet_diagnostic.IDE0304.severity = warning
+
+# Use collection expression for fluent
+dotnet_diagnostic.IDE0305.severity = warning
+
+# Use conditional delegate call
+dotnet_diagnostic.IDE1005.severity = warning
+
+## Suggestions ##
+
+# Use expression body for constructors
+dotnet_diagnostic.IDE0021.severity = suggestion
+
+# Use expression body for methods
+dotnet_diagnostic.IDE0022.severity = suggestion
+
+# Use expression body for conversion operators
+dotnet_diagnostic.IDE0023.severity = suggestion
+
+# Use expression body for operators
+dotnet_diagnostic.IDE0024.severity = suggestion
+
+# Use expression body for properties
+dotnet_diagnostic.IDE0025.severity = suggestion
+
+# Use expression body for indexers
+dotnet_diagnostic.IDE0026.severity = suggestion
+
+# Use expression body for accessors
+dotnet_diagnostic.IDE0027.severity = suggestion
+
+# Use expression body for lambdas
+dotnet_diagnostic.IDE0053.severity = suggestion
+
+# Use expression body for local functions
+dotnet_diagnostic.IDE0061.severity = suggestion
+
+## Silents ##
+
+# Use primary constructor
+dotnet_diagnostic.IDE0290.severity = silent
+
+## Nones ##
+
+# Remove unnecessary expression value
+dotnet_diagnostic.IDE0058.severity = none
+
+### Code quality rules ###
+
+## Errors ##
+
+# Mark assemblies with AssemblyVersionAttribute
+dotnet_diagnostic.CA1016.severity = error
+
+# Mark attributes with AttributeUsageAttribute
+dotnet_diagnostic.CA1018.severity = error
+
+## Warnings ##
+
+# Types that own disposable fields should be disposable
+dotnet_diagnostic.CA1001.severity = warning
+
+# Use generic event handler instances
+dotnet_diagnostic.CA1003.severity = warning
+dotnet_code_quality.CA1003.api_surface = all
+
+# Collections should implement generic interface
+dotnet_diagnostic.CA1010.severity = warning
+dotnet_code_quality.CA1010.api_surface = all
+
+# Define accessors for attribute arguments
+dotnet_diagnostic.CA1019.severity = warning
+
+# Mark enums with FlagsAttribute
+dotnet_diagnostic.CA1027.severity = warning
+dotnet_code_quality.CA1027.api_surface = all
+
+# Enum storage should be Int32
+dotnet_diagnostic.CA1028.severity = warning
+dotnet_code_quality.CA1028.api_surface = all
+
+# Use events where appropriate
+dotnet_diagnostic.CA1030.severity = warning
+dotnet_code_quality.CA1030.api_surface = all
+
+# Implement standard exception constructors
+dotnet_diagnostic.CA1032.severity = warning
+
+# Interface methods should be callable by child types
+dotnet_diagnostic.CA1033.severity = warning
+
+# Nested types should not be visible
+dotnet_diagnostic.CA1034.severity = warning
+
+# Use integral or string argument for indexers
+dotnet_diagnostic.CA1043.severity = warning
+dotnet_code_quality.CA1043.api_surface = all
+
+# URI parameters should not be strings
+dotnet_diagnostic.CA1054.severity = warning
+dotnet_code_quality.CA1054.api_surface = all
+
+# URI return values should not be strings
+dotnet_diagnostic.CA1055.severity = warning
+dotnet_code_quality.CA1055.api_surface = all
+
+# URI properties should not be strings
+dotnet_diagnostic.CA1056.severity = warning
+dotnet_code_quality.CA1056.api_surface = all
+
+# Types should not extend certain base types
+dotnet_diagnostic.CA1058.severity = warning
+dotnet_code_quality.CA1058.api_surface = all
+
+# Move P/Invokes to NativeMethods class
+dotnet_diagnostic.CA1060.severity = warning
+
+# Implement IDisposable correctly
+dotnet_diagnostic.CA1063.severity = warning
+dotnet_code_quality.CA1063.api_surface = all
+
+# Implement IEquatable when overriding Equals
+dotnet_diagnostic.CA1066.severity = warning
+
+# Override Equals when implementing IEquatable
+dotnet_diagnostic.CA1067.severity = warning
+
+# CancellationToken parameters must come last
+dotnet_diagnostic.CA1068.severity = warning
+
+# Enums should not have duplicate values
+dotnet_diagnostic.CA1069.severity = warning
+
+# Use ArgumentNullException throw helper
+dotnet_diagnostic.CA1510.severity = warning
+
+# Use ArgumentException throw helper
+dotnet_diagnostic.CA1511.severity = warning
+
+# Use ArgumentOutOfRangeException throw helper
+dotnet_diagnostic.CA1512.severity = warning
+
+# Use ObjectDisposedException throw helper
+dotnet_diagnostic.CA1513.severity = warning
+
+# Do not name enum values 'Reserved'
+dotnet_diagnostic.CA1700.severity = warning
+
+# Identifiers should have correct suffix
+dotnet_diagnostic.CA1710.severity = warning
+dotnet_code_quality.CA1710.api_surface = all
+
+# Identifiers should not have incorrect suffix
+dotnet_diagnostic.CA1711.severity = warning
+dotnet_code_quality.CA1711.api_surface = all
+
+# Do not prefix enum values with type name
+dotnet_diagnostic.CA1712.severity = warning
+
+# Events should not have before or after prefix
+dotnet_diagnostic.CA1713.severity = warning
+
+# Flags enums should have plural names
+dotnet_diagnostic.CA1714.severity = warning
+dotnet_code_quality.CA1714.api_surface = all
+
+# Identifiers should have correct prefix
+dotnet_diagnostic.CA1715.severity = warning
+dotnet_code_quality.CA1715.api_surface = all
+
+# Identifiers should not match keywords
+dotnet_diagnostic.CA1716.severity = warning
+dotnet_code_quality.CA1716.api_surface = all
+
+# Only FlagsAttribute enums should have plural names
+dotnet_diagnostic.CA1717.severity = warning
+dotnet_code_quality.CA1717.api_surface = all
+
+# Properties should not return arrays
+dotnet_diagnostic.CA1819.severity = warning
+
+# Identifiers should not contain type names
+dotnet_diagnostic.CA1720.severity = warning
+dotnet_code_quality.CA1720.api_surface = all
+
+# Property names should not match get methods
+dotnet_diagnostic.CA1721.severity = warning
+dotnet_code_quality.CA1721.api_surface = all
+
+# Use Literals Where Appropriate
+dotnet_diagnostic.CA1802.severity = warning
+dotnet_code_quality.CA1802.api_surface = all
+
+# Do not initialize unnecessarily
+dotnet_diagnostic.CA1805.severity = warning
+
+# Avoid unsealed attributes
+dotnet_diagnostic.CA1813.severity = warning
+
+# Properties should not return arrays
+dotnet_diagnostic.CA1819.severity = warning
+dotnet_code_quality.CA1819.api_surface = all
+
+# Test for empty strings using string length
+dotnet_diagnostic.CA1820.severity = warning
+
+# Remove empty finalizers
+dotnet_diagnostic.CA1821.severity = warning
+
+# Mark members as static
+dotnet_diagnostic.CA1822.severity = warning
+dotnet_code_quality.CA1822.api_surface = all
+
+# Avoid zero-length array allocations
+dotnet_diagnostic.CA1825.severity = warning
+
+# Use Length/Count property instead of Enumerable.Count method
+dotnet_diagnostic.CA1829.severity = warning
+
+# Prefer strongly-typed Append and Insert method overloads on StringBuilder
+dotnet_diagnostic.CA1830.severity = warning
+
+# Use StringBuilder.Append(char) for single character strings
+dotnet_diagnostic.CA1834.severity = warning
+
+# Prefer IsEmpty over Count when available
+dotnet_diagnostic.CA1836.severity = warning
+
+# Use Environment.ProcessId instead of Process.GetCurrentProcess().Id
+dotnet_diagnostic.CA1837.severity = warning
+
+# Use Environment.ProcessPath instead of Process.GetCurrentProcess().MainModule.FileName
+dotnet_diagnostic.CA1839.severity = warning
+
+# Use Environment.CurrentManagedThreadId instead of Thread.CurrentThread.ManagedThreadId
+dotnet_diagnostic.CA1840.severity = warning
+
+# Prefer Dictionary Contains methods
+dotnet_diagnostic.CA1841.severity = warning
+
+# Do not use 'WhenAll' with a single task
+dotnet_diagnostic.CA1842.severity = warning
+
+# Do not use 'WaitAll' with a single task
+dotnet_diagnostic.CA1843.severity = warning
+
+# Use string.Contains(char) instead of string.Contains(string) with single characters
+dotnet_diagnostic.CA1847.severity = warning
+
+# Possible multiple enumerations of IEnumerable collection
+dotnet_diagnostic.CA1851.severity = warning
+
+# Unnecessary call to 'Dictionary.ContainsKey(key)'
+dotnet_diagnostic.CA1853.severity = warning
+
+# Prefer the IDictionary.TryGetValue(TKey, out TValue) method
+dotnet_diagnostic.CA1854.severity = warning
+
+# Use StartsWith instead of IndexOf
+dotnet_diagnostic.CA1858.severity = warning
+
+# Use concrete types when possible for improved performance
+dotnet_diagnostic.CA1859.severity = warning
+dotnet_code_quality.CA1859.api_surface = all
+
+# Avoid using 'Enumerable.Any()' extension method
+dotnet_diagnostic.CA1860.severity = warning
+
+# Use the 'StringComparison' method overloads to perform case-insensitive string comparisons
+dotnet_diagnostic.CA1862.severity = warning
+
+# Prefer the 'IDictionary.TryAdd(TKey, TValue)' method
+dotnet_diagnostic.CA1864.severity = warning
+
+# Unnecessary call to 'Contains' for sets
+dotnet_diagnostic.CA1868.severity = warning
+
+# Cache and reuse 'JsonSerializerOptions' instances
+dotnet_diagnostic.CA1869.severity = warning
+
+# Dispose objects before losing scope
+dotnet_diagnostic.CA2000.severity = warning
+
+# Do not call ToImmutableCollection on an ImmutableCollection value
+dotnet_diagnostic.CA2009.severity = warning
+
+# Forward the CancellationToken parameter to methods that take one
+dotnet_diagnostic.CA2016.severity = warning
+
+# Specify marshalling for P/Invoke string arguments
+dotnet_diagnostic.CA2101.severity = warning
+
+# Disposable fields should be disposed
+dotnet_diagnostic.CA2213.severity = warning
+
+# Disposable types should declare finalizer
+dotnet_diagnostic.CA2216.severity = warning
+
+# Operator overloads have named alternates
+dotnet_diagnostic.CA2225.severity = warning
+dotnet_code_quality.CA2225.api_surface = all
+
+# Collection properties should be read only
+dotnet_diagnostic.CA2227.severity = warning
+
+# Pass System.Uri objects instead of strings
+dotnet_diagnostic.CA2234.severity = warning
+dotnet_code_quality.CA2234.api_surface = all
+
+# Provide correct arguments to formatting methods
+dotnet_diagnostic.CA2241.severity = warning
+
+# Attribute string literals should parse correctly
+dotnet_diagnostic.CA2243.severity = warning
+
+# Do not duplicate indexed element initializations
+dotnet_diagnostic.CA2244.severity = warning
+
+# Provide correct enum argument to Enum.HasFlag
+dotnet_diagnostic.CA2248.severity = warning
+
+# Consider using String.Contains instead of String.IndexOf
+dotnet_diagnostic.CA2249.severity = warning
+
+# Use ThrowIfCancellationRequested
+dotnet_diagnostic.CA2250.severity = warning
+
+# Use String.Equals over String.Compare
+dotnet_diagnostic.CA2251.severity = warning
+
+### SYSLIB ###
+
+## Silents ##
+
+# Use GeneratedRegexAttribute to generate the regular expression implementation at compile time.
+dotnet_diagnostic.SYSLIB1045.severity = silent
+
+# Use LibraryImportAttribute instead of DllImportAttribute to generate p/invoke marshalling code at compile time.
+dotnet_diagnostic.SYSLIB1054.severity = silent
+
+# Use GeneratedComInterfaceAttribute instead of ComImportAttribute to generate COM marshalling code at compile time.
+dotnet_diagnostic.SYSLIB1096.severity = silent
+
+### Roslynator ###
+
+## Errors ##
+
+# Add blank line after using directive list
+dotnet_diagnostic.rcs0003.severity = error
+
+# Put attribute list on its own line
+dotnet_diagnostic.rcs0016.severity = error
+
+# Add new line after switch label
+dotnet_diagnostic.rcs0024.severity = error
+
+# Put enum member on its own line
+dotnet_diagnostic.rcs0031.severity = error
+
+# Put statement on its own line
+dotnet_diagnostic.rcs0033.severity = error
+
+# Remove new line before base list
+dotnet_diagnostic.rcs0039.severity = error
+
+# Put auto-accessors on a single line
+dotnet_diagnostic.rcs0042.severity = error
+
+# Add blank line before top declaration
+dotnet_diagnostic.rcs0050.severity = error
+
+# Add/remove line after file scoped namespace declaration
+dotnet_diagnostic.rcs0060.severity = error
+roslynator_blank_line_after_file_scoped_namespace_declaration = true
+
+# Remove unnecessary braces in switch section
+dotnet_diagnostic.rcs1031.severity = error
+
+# Remove redundant 'sealed' modifier
+dotnet_diagnostic.rcs1034.severity = error
+
+# Remove argument list from attribute
+dotnet_diagnostic.rcs1039.severity = error
+
+# Remove enum default underlying type
+dotnet_diagnostic.rcs1042.severity = error
+
+# Declare each attribute separately
+dotnet_diagnostic.rcs1052.severity = error
+
+## Warnings ##
+
+# Merge 'else' with nested 'if'
+dotnet_diagnostic.rcs1006.severity = warning
+
+# Use "" or 'string.Empty'
+dotnet_diagnostic.rcs1078.severity = warning
+roslynator_empty_string_style = field
+
+# Non-asynchronous method name should not end with 'Async'
+dotnet_diagnostic.rcs1047.severity = warning
+
+# Remove unnecessary case label
+dotnet_diagnostic.rcs1069.severity = warning
+
+# Remove redundant default switch section
+dotnet_diagnostic.rcs1070.severity = warning
+
+# Remove redundant base constructor call
+dotnet_diagnostic.rcs1071.severity = warning
+
+# Remove redundant constructor
+dotnet_diagnostic.rcs1074.severity = warning
+
+# Split variable declaration
+dotnet_diagnostic.rcs1081.severity = warning
+
+# Constant values should be placed on right side of comparisons
+dotnet_diagnostic.rcs1098.severity = warning
+
+# Default label should be the last label in a switch section
+dotnet_diagnostic.rcs1099.severity = warning
+
+# Unnecessary interpolation
+dotnet_diagnostic.rcs1105.severity = warning
+
+# Remove redundant 'ToCharArray' call
+dotnet_diagnostic.rcs1107.severity = warning
+
+# Use 'string.IsNullOrEmpty' method
+dotnet_diagnostic.rcs1113.severity = warning
+
+# Remove redundant delegate creation
+dotnet_diagnostic.rcs1114.severity = warning
+
+# Mark local variable as const
+dotnet_diagnostic.rcs1118.severity = warning
+
+# Bitwise operation on enum without Flags attribute
+dotnet_diagnostic.rcs1130.severity = warning
+
+# Remove redundant statement
+dotnet_diagnostic.rcs1134.severity = warning
+
+# Merge switch sections with equivalent content
+dotnet_diagnostic.rcs1136.severity = warning
+
+# Sort enum members
+dotnet_diagnostic.rcs1154.severity = warning
+
+# Avoid chain of assignments
+dotnet_diagnostic.rcs1162.severity = warning
+
+# Use read-only auto-implemented property
+dotnet_diagnostic.rcs1170.severity = warning
+
+# Unused 'this' parameter
+dotnet_diagnostic.rcs1175.severity = warning
+
+# Use Regex instance instead of static method
+dotnet_diagnostic.rcs1186.severity = warning
+
+# Join string expressions
+dotnet_diagnostic.rcs1190.severity = warning
+
+# Declare enum value as combination of names
+dotnet_diagnostic.rcs1191.severity = warning
+
+# Unnecessary usage of verbatim string literal
+dotnet_diagnostic.rcs1192.severity = warning
+
+# Unnecessary null check
+dotnet_diagnostic.rcs1199.severity = warning
+
+# Use EventArgs.Empty
+dotnet_diagnostic.rcs1204.severity = warning
+
+# Order type parameter constraints
+dotnet_diagnostic.rcs1209.severity = warning
+
+# Remove redundant assignment
+dotnet_diagnostic.rcs1212.severity = warning
+
+# Unnecessary interpolated string
+dotnet_diagnostic.rcs1214.severity = warning
+
+# Unnecessary unsafe context
+dotnet_diagnostic.rcs1216.severity = warning
+
+# Convert interpolated string to concatenation
+dotnet_diagnostic.rcs1217.severity = warning
+
+# Make method an extension method
+dotnet_diagnostic.rcs1224.severity = warning
+
+# Use enum field explicitly
+dotnet_diagnostic.rcs1257.severity = warning
+
+# Unnecessary enum flag
+dotnet_diagnostic.rcs1258.severity = warning
+
+# Resource can be disposed asynchronously
+dotnet_diagnostic.rcs1261.severity = warning
+
+# Unnecessary raw string literal
+dotnet_diagnostic.rcs1262.severity = warning
+
+# Remove redundant catch block
+dotnet_diagnostic.rcs1265.severity = warning
+
+# Use raw string literal
+dotnet_diagnostic.rcs1266.severity = warning
+
+# Use string interpolation instead of 'string.Concat'
+dotnet_diagnostic.rcs1267.severity = warning
+
+# Simplify numeric comparison
+dotnet_diagnostic.rcs1268.severity = warning
+
+## Nones ##
+
+# Simplify nested using statement
+dotnet_diagnostic.rcs1005.severity = none
+
+# File contains no code
+dotnet_diagnostic.rcs1093.severity = none
+
+# Add 'static' modifier to all partial class declarations
+dotnet_diagnostic.rcs1108.severity = none
+
+# Remove redundant overriding member
+dotnet_diagnostic.rcs1132.severity = none
+
+# Use string.Length instead of comparison with empty string
+dotnet_diagnostic.rcs1156.severity = none
+
+# Enum should declare explicit values
+dotnet_diagnostic.rcs1161.severity = none
+
+# Unused parameter
+dotnet_diagnostic.rcs1163.severity = none
+
+# Convert comment to documentation comment
+dotnet_diagnostic.rcs1181.severity = none
+
+# Implement exception constructors
+dotnet_diagnostic.rcs1194.severity = none
+
+# Call extension method as instance method
+dotnet_diagnostic.rcs1196.severity = none
+
+# Unused element in a documentation comment
+dotnet_diagnostic.rcs1228.severity = none
+
+# Use async/await when necessary
+dotnet_diagnostic.rcs1229.severity = none
+
+#### 코어 EditorConfig 옵션 ####
+
+# 들여쓰기 및 간격
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+# 새 줄 기본 설정
+end_of_line = crlf
+insert_final_newline = true
+
+#### .NET 코딩 규칙 ####
+
+# Using 구성
+dotnet_separate_import_directive_groups = false
+dotnet_sort_system_directives_first = false
+file_header_template = unset
+
+# this. 및 Me. 기본 설정
+dotnet_style_qualification_for_event = false:silent
+dotnet_style_qualification_for_field = false:silent
+dotnet_style_qualification_for_method = false:silent
+dotnet_style_qualification_for_property = false:silent
+
+# 언어 키워드 및 BCL 형식 기본 설정
+dotnet_style_predefined_type_for_locals_parameters_members = true:silent
+dotnet_style_predefined_type_for_member_access = true:silent
+
+# 괄호 기본 설정
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:silent
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:silent
+dotnet_style_parentheses_in_other_operators = never_if_unnecessary:silent
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:silent
+
+# 한정자 기본 설정
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
+
+# 식 수준 기본 설정
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_explicit_tuple_names = true:suggestion
+dotnet_style_namespace_match_folder = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+dotnet_style_prefer_auto_properties = true:silent
+dotnet_style_prefer_collection_expression = when_types_exactly_match:suggestion
+dotnet_style_prefer_compound_assignment = true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:silent
+dotnet_style_prefer_conditional_expression_over_return = true:silent
+dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+dotnet_style_prefer_simplified_interpolation = true:suggestion
+
+# 필드 기본 설정
+dotnet_style_readonly_field = true:suggestion
+
+# 매개 변수 기본 설정
+dotnet_code_quality_unused_parameters = all:suggestion
+
+# 비표시 오류(Suppression) 기본 설정
+dotnet_remove_unnecessary_suppression_exclusions = none
+
+# 새 줄 기본 설정
+dotnet_style_allow_multiple_blank_lines_experimental = false:silent
+dotnet_style_allow_statement_immediately_after_block_experimental = false:silent
+
+#### C# 코딩 규칙 ####
+
+# var 기본 설정
+csharp_style_var_elsewhere = true:silent
+csharp_style_var_for_built_in_types = true:silent
+csharp_style_var_when_type_is_apparent = true:silent
+
+# 식 본문 멤버
+csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_constructors = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_lambdas = true:silent
+csharp_style_expression_bodied_local_functions = true:silent
+csharp_style_expression_bodied_methods = true:silent
+csharp_style_expression_bodied_operators = true:silent
+csharp_style_expression_bodied_properties = true:silent
+
+# 패턴 일치 기본 설정
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_prefer_extended_property_pattern = true:suggestion
+csharp_style_prefer_not_pattern = true:suggestion
+csharp_style_prefer_pattern_matching = true:silent
+csharp_style_prefer_switch_expression = true:suggestion
+
+# Null 검사 기본 설정
+csharp_style_conditional_delegate_call = true:suggestion
+
+# 한정자 기본 설정
+csharp_prefer_static_local_function = false:suggestion
+csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async
+csharp_style_prefer_readonly_struct = true:suggestion
+csharp_style_prefer_readonly_struct_member = true:suggestion
+
+# 코드 블록 기본 설정
+csharp_prefer_braces = true:silent
+csharp_prefer_simple_using_statement = true:suggestion
+csharp_style_namespace_declarations = file_scoped:silent
+csharp_style_prefer_method_group_conversion = true:silent
+csharp_style_prefer_primary_constructors = true:suggestion
+csharp_style_prefer_top_level_statements = true:silent
+
+# 식 수준 기본 설정
+csharp_prefer_simple_default_expression = true:suggestion
+csharp_style_deconstructed_variable_declaration = true:suggestion
+csharp_style_implicit_object_creation_when_type_is_apparent = true:suggestion
+csharp_style_inlined_variable_declaration = true:suggestion
+csharp_style_prefer_index_operator = true:suggestion
+csharp_style_prefer_local_over_anonymous_function = false:suggestion
+csharp_style_prefer_null_check_over_type_check = true:suggestion
+csharp_style_prefer_range_operator = true:suggestion
+csharp_style_prefer_tuple_swap = true:suggestion
+csharp_style_prefer_utf8_string_literals = true:suggestion
+csharp_style_throw_expression = true:suggestion
+csharp_style_unused_value_assignment_preference = discard_variable:suggestion
+csharp_style_unused_value_expression_statement_preference = discard_variable:silent
+
+# 'using' 지시문 기본 설정
+csharp_using_directive_placement = outside_namespace:silent
+
+# 새 줄 기본 설정
+csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = true:silent
+csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = true:silent
+csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = false:silent
+csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false:silent
+csharp_style_allow_embedded_statements_on_same_line_experimental = true:silent
+
+#### C# 서식 설정 규칙 ####
+
+# 새 줄 기본 설정
+csharp_new_line_before_catch = false
+csharp_new_line_before_else = false
+csharp_new_line_before_finally = false
+csharp_new_line_before_members_in_anonymous_types = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_open_brace = none
+csharp_new_line_between_query_expression_clauses = true
+
+# 들여쓰기 기본 설정
+csharp_indent_block_contents = true
+csharp_indent_braces = false
+csharp_indent_case_contents = true
+csharp_indent_case_contents_when_block = false
+csharp_indent_labels = flush_left
+csharp_indent_switch_labels = true
+
+# 공간 기본 설정
+csharp_space_after_cast = false
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_after_comma = true
+csharp_space_after_dot = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_after_semicolon_in_for_statement = true
+csharp_space_around_binary_operators = before_and_after
+csharp_space_around_declaration_statements = false
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_before_comma = false
+csharp_space_before_dot = false
+csharp_space_before_open_square_brackets = false
+csharp_space_before_semicolon_in_for_statement = false
+csharp_space_between_empty_square_brackets = false
+csharp_space_between_method_call_empty_parameter_list_parentheses = false
+csharp_space_between_method_call_name_and_opening_parenthesis = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
+csharp_space_between_method_declaration_name_and_open_parenthesis = false
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_parentheses = false
+csharp_space_between_square_brackets = false
+
+# 기본 설정 래핑
+csharp_preserve_single_line_blocks = true
+csharp_preserve_single_line_statements = true
+
+#### 명명 스타일 ####
+
+# 명명 규칙
+
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+# 기호 사양
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.interface.required_modifiers = 
+
+# 명명 스타일
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.required_suffix = 
+dotnet_naming_style.begins_with_i.word_separator = 
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+# ReSharper properties
+resharper_wrap_object_and_collection_initializer_style = chop_always
+resharper_member_can_be_private_global_highlighting = none
