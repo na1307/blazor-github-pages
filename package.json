@@ -1,7 +1,7 @@
 {
   "name": "blazor-github-page",
   "description": "GitHub Pages Blazor WASM",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "",
   "private": true,
   "homepage": "https://github.com/na1307/blazor-github-pages",
@@ -31,8 +31,7 @@
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.1",
-    "@types/git-repo-name": "^1.0.4",
-    "git-repo-name": "^1.0.1"
+    "@actions/github": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.17.10",
