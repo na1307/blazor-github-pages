@@ -2,45 +2,59 @@
 
 This action allows you to deploy your Blazor WASM app to GitHub Pages.
 
+## Table of Contents
+- [What this does](#what-this-does)
+- [How to use](#how-to-use)
+    - [1. Set the Project](#1-set-the-project)
+    - [2. Set the repository settings](#2-set-the-repository-settings)
+    - [3. Add workflow file](#3-add-workflow-file)
+- [Inputs and Outputs](#inputs-and-outputs)
+    - [Inputs](#inputs)
+    - [Outputs](#outputs)
+- [Troubleshooting](#troubleshooting)
+
 ## What this does
 
-Restore, build, and publish the project, modify index.html to fit the
-repository, and create a .nojekyll file.
+Restore, build, and publish the project, modify index.html and 404.html to fit the repository.
 
 ## How to use
 
-First, set Repository Settings - Pages - Source to GitHub Actions.
+### 1. Set the Project
 
-This action has four inputs and one output.
+Add [`Bluehill.Blazor.GHPages` NuGet Package](https://www.nuget.org/packages/Bluehill.Blazor.GHPages/) to the project.
+This Package adds `gh-pages.js` and `404.html` to the published `wwwroot` directory. If these files already exist,
+delete them.
 
-### Inputs
+Modify `index.html` to include the `gh-pages.js` script. This script adjusts routing for Blazor WebAssembly apps
+deployed to GitHub Pages, ensuring the app behaves correctly when navigating subpages.
 
-`project-path`: Path of project (.csproj). Default is
-`(repo name)/(repo name).csproj`.
+```html
+<script src="gh-pages.js"></script>
+<script src="_framework/blazor.webassembly.js"></script>
+```
 
-`publish-path`: Path to output in Publish step. It doesn't matter most of the
-time.
+### 2. Set the repository settings
 
-`main-repo`: Set to `true` only when running this action from the default GitHub
-Pages repository (`{username}.github.io`).
+Go to your repository's **Settings > Pages > Source** and set the source to **GitHub Actions**.
 
-`fix-404`: Whether to apply repository-specific modifications to 404.html as
-well. This only takes effect when main-repo is false. Default is `true`.
+This step is crucial for enabling deployments using the GitHub Pages workflow. For reference:
 
-### Outputs
+![image1](./image1.png)
 
-`wwwroot-path`: The resulting `wwwroot` path. It must be passed to `path` in the
-`upload-pages-artifact` step.
+### 3. Add workflow file
 
-## Example Workflow
+Below is an example workflow that deploys your Blazor WebAssembly app to GitHub Pages. Copy these into
+`.github/workflows/gh-pages.yml` in your repository.
+
+> **Replace `MyBlazorApp/MyBlazorApp.csproj` with your actual `.csproj` path.**
 
 ```yml
-name: Deploy
+name: Deploy GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -67,13 +81,12 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Prepare Blazor WASM for GitHub Pages
-        uses: na1307/blazor-github-pages@v2
+        uses: na1307/blazor-github-pages@3
         id: prepare
         with:
-          project-path: BluehillHomePage/BluehillHomePage.csproj
-          main-repo: true
+          project-path: MyBlazorApp/MyBlazorApp.csproj
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
@@ -93,3 +106,40 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 ```
+
+## Inputs and Outputs
+
+This action has two inputs and one output.
+
+### Inputs
+
+`project-path`: Path of project (.csproj). Required, no default value. For example: `MyBlazorApp/MyBlazorApp.csproj`.
+
+`publish-path`: Path to output in the Publish step. Most of the time, you can leave this as the default `_out`. However,
+you can specify a custom path if needed for your project structure or workflow requirements.
+
+> **Note:** Inputs `main-repo` and `fix-404` have been **deprecated** as of version v3.
+> This action now:
+> - Automatically detects if the repository is the default Pages repository (username.github.io).
+> - Modifies `404.html` if it exists.
+
+### Outputs
+
+`wwwroot-path`: The resulting `wwwroot` path. It must be passed to `path` in the `upload-pages-artifact` action.
+
+## Troubleshooting
+
+### Common Issues
+
+1. **`wwwroot` Path Not Found**
+    - Ensure the Blazor project builds and publishes successfully.
+    - Verify that the `publish-path` input matches the expected output directory.
+
+2. **Deployment Fails**
+    - Ensure that your repository’s Pages Source is set to **GitHub Actions**.
+    - Check the logs in the **Deploy to GitHub Pages** step for detailed error messages.
+
+3. **Routing Issues**
+    - Confirm that `gh-pages.js` is included in `index.html` as shown in [Step 1](#1-set-the-project).
+
+For additional support, file an issue in the [GitHub repository](https://github.com/na1307/blazor-github-pages).
