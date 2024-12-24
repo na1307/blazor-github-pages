@@ -8,8 +8,7 @@ branding:
 inputs:
   project-path:
     description: Path of project (.csproj)
-    default:
-      ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj
+    required: true
   publish-path:
     description: Path to output in Publish step
     default: _out
@@ -17,17 +16,18 @@ inputs:
     description:
       Set to true only when running this action from the default GitHub Pages
       repository ({ID}.github.io).
-    default: false
+    deprecationMessage: This input is deprecated. This input no longer has any effect.
+    default: 'false'
   fix-404:
     description:
       Whether to apply repository-specific modifications to 404.html as well.
       This only takes effect when main-repo is false.
-    default: true
+    deprecationMessage: This input is deprecated. This input no longer has any effect.
+    default: 'true'
 
 outputs:
   wwwroot-path:
     description: Path of wwwroot
-    value: ${{ steps.wwwroot-output.outputs.wwwroot }}
 
 runs:
   using: node20
