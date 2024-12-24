@@ -10,9 +10,9 @@ verifyExitCode() {
 }
 
 if [ $1 == "--main-repo=false" ]; then
-  MAINREPO=false;
+  MAINREPO=false
 elif [ $1 == "--main-repo=true" ]; then
-  MAINREPO=true;
+  MAINREPO=true
 else
   echo Unknown Argument.
   exit 1

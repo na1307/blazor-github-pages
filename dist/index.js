@@ -29998,6 +29998,7 @@ async function main() {
     }
     core.info(`wwwroot Path: ${wwwroot}`);
     core.setOutput('wwwroot-path', wwwroot);
+    core.info(`${github_1.context.repo.owner}/${github_1.context.repo.repo}`);
     // Check if the repository is not the default GitHub Pages repo
     if (github_1.context.repo.repo !== `${github_1.context.repo.owner}.github.io`) {
         core.info('Modifying index.html for this repository...');

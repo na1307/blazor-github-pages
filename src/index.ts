@@ -70,7 +70,7 @@ async function main(): Promise<void> {
 
     core.info(`wwwroot Path: ${wwwroot}`);
     core.setOutput('wwwroot-path', wwwroot);
-
+    core.info(`${context.repo.owner}/${context.repo.repo}`);
     // Check if the repository is not the default GitHub Pages repo
     if (context.repo.repo !== `${context.repo.owner}.github.io`) {
         core.info('Modifying index.html for this repository...');
