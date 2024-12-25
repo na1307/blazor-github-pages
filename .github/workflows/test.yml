@@ -28,8 +28,8 @@ jobs:
         run: npm ci
       - name: Run Jest Tests
         run: npm run ci-test --coverage
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v4
+      - name: SonarCloud
+        run: npm run sonarscanner -- -Dsonar.token=${{ secrets.SONAR_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
