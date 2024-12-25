@@ -3,15 +3,18 @@
 This action allows you to deploy your Blazor WASM app to GitHub Pages.
 
 ## Table of Contents
-- [What this does](#what-this-does)
-- [How to use](#how-to-use)
+- [GitHub Pages Blazor WASM](#github-pages-blazor-wasm)
+  - [Table of Contents](#table-of-contents)
+  - [What this does](#what-this-does)
+  - [How to use](#how-to-use)
     - [1. Set the Project](#1-set-the-project)
     - [2. Set the repository settings](#2-set-the-repository-settings)
     - [3. Add workflow file](#3-add-workflow-file)
-- [Inputs and Outputs](#inputs-and-outputs)
+  - [Inputs and Outputs](#inputs-and-outputs)
     - [Inputs](#inputs)
     - [Outputs](#outputs)
-- [Troubleshooting](#troubleshooting)
+  - [Troubleshooting](#troubleshooting)
+    - [Common Issues](#common-issues)
 
 ## What this does
 
@@ -83,7 +86,7 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: Prepare Blazor WASM for GitHub Pages
-        uses: na1307/blazor-github-pages@3
+        uses: na1307/blazor-github-pages@v3
         id: prepare
         with:
           project-path: MyBlazorApp/MyBlazorApp.csproj
