@@ -1,5 +1,3 @@
-// tests/e2e.test.ts
-
 import * as github from '@actions/github';
 import fs from 'fs';
 import path from 'path';
