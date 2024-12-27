@@ -1,26 +1,41 @@
 version: 2
 updates:
-  - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: weekly
-    groups:
-      actions-minor:
-        update-types:
-          - minor
-          - patch
-
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       npm-development:
         dependency-type: development
-        update-types:
-          - minor
-          - patch
+        ignore:
+          - dependency-name: "@types/node"
+            update-types: "semver:major"
       npm-production:
         dependency-type: production
-        update-types:
-          - patch
+
+  - package-ecosystem: dotnet-sdk
+    directory: /
+    schedule:
+      interval: weekly
+      day: wednesday
+      time: "09:00"
+      timezone: Asia/Seoul
+    assignees:
+      - na1307
+    pull-request-branch-name:
+      separator: _
+    reviewers:
+      - na1307
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+      time: "12:00"
+      timezone: Asia/Seoul
+    assignees:
+      - na1307
+    pull-request-branch-name:
+      separator: _
+    reviewers:
+      - na1307
