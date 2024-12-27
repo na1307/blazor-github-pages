@@ -11,7 +11,8 @@ updates:
         dependency-type: production
     ignore:
       - dependency-name: "@types/node"
-        update-types: "semver:major"
+        update-types:
+          - "semver:major"
 
   - package-ecosystem: dotnet-sdk
     directory: /
