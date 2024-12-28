@@ -1,9 +1,6 @@
 <Project>
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>1</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
-    <Version>1.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/na1307/Bluehill.Blazor.GHPages</RepositoryUrl>
