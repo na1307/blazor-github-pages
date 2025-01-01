@@ -4,6 +4,12 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    assignees:
+      - na1307
+    pull-request-branch-name:
+      separator: _
+    reviewers:
+      - na1307
     groups:
       npm-development:
         dependency-type: development
