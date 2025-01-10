@@ -1,7 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.StaticWebAssets">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/na1307/Bluehill.Blazor.GHPages</RepositoryUrl>
+    <StaticWebAssetBasePath Condition="$(StaticWebAssetBasePath) == ''">/</StaticWebAssetBasePath>
     <AssemblyVersion>1</AssemblyVersion>
     <FileVersion>1.0.2</FileVersion>
     <Version>1.0.2</Version>
