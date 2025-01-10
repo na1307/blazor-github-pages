@@ -1,17 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.StaticWebAssets">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <AssemblyVersion>1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
-    <Version>1.0.1</Version>
+    <FileVersion>1.0.2</FileVersion>
+    <Version>1.0.2</Version>
   </PropertyGroup>
   <ItemGroup>
     <SupportedPlatform Include="browser"/>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md">
