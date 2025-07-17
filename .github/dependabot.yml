@@ -8,8 +8,6 @@ updates:
       - na1307
     pull-request-branch-name:
       separator: _
-    reviewers:
-      - na1307
     groups:
       npm-development:
         dependency-type: development
@@ -31,8 +29,6 @@ updates:
       - na1307
     pull-request-branch-name:
       separator: _
-    reviewers:
-      - na1307
 
   - package-ecosystem: github-actions
     directory: /
@@ -44,5 +40,3 @@ updates:
       - na1307
     pull-request-branch-name:
       separator: _
-    reviewers:
-      - na1307
