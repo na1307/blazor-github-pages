@@ -5,6 +5,6 @@
     <CentralPackageVersionOverrideEnabled>false</CentralPackageVersionOverrideEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <GlobalPackageReference Include="Bluehill.Imports" Version="1.0.9" />
+    <GlobalPackageReference Include="Bluehill.Imports" Version="1.0.17" />
   </ItemGroup>
 </Project>
