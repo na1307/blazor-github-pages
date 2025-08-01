@@ -68,11 +68,11 @@
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "@types/node": "^20.19.8",
+    "@types/node": "^20.19.9",
     "@vercel/ncc": "^0.38.3",
-    "jest": "^30.0.4",
+    "jest": "^30.0.5",
     "sonarqube-scanner": "^4.3.0",
     "ts-jest": "^29.4.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   }
 }
