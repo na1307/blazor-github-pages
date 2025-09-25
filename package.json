@@ -1,7 +1,7 @@
 {
   "name": "blazor-github-page",
   "description": "GitHub Pages Blazor WASM",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": "",
   "private": true,
   "homepage": "https://github.com/na1307/blazor-github-pages",
@@ -21,7 +21,7 @@
     ".": "./dist/index.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "scripts": {
     "bundle": "npm run package",
@@ -68,11 +68,11 @@
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "@types/node": "^20.19.9",
-    "@vercel/ncc": "^0.38.3",
-    "jest": "^30.0.5",
-    "sonarqube-scanner": "^4.3.0",
-    "ts-jest": "^29.4.0",
+    "@types/node": "^24.5.2",
+    "@vercel/ncc": "^0.38.4",
+    "jest": "^30.1.3",
+    "sonarqube-scanner": "^4.3.1",
+    "ts-jest": "^29.4.4",
     "typescript": "^5.9.2"
   }
 }
