@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,7 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
       - name: GitHub Pages Blazor WASM
         uses: ./
         with:
