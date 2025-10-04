@@ -30023,8 +30023,15 @@ async function main() {
     }
     core.info(`wwwroot Path: ${wwwroot}`);
     core.setOutput('wwwroot-path', wwwroot);
-    const ok = (0, github_1.getOctokit)(core.getInput('gh-token'));
-    const cname = (await ok.request('GET /repos/{owner}/{repo}/pages', github_1.context.repo)).data.cname;
+    let cname;
+    try {
+        const ok = (0, github_1.getOctokit)(core.getInput('gh-token'));
+        cname = (await ok.request('GET /repos/{owner}/{repo}/pages', github_1.context.repo)).data.cname;
+    }
+    catch (error) {
+        core.warning(error);
+        cname = null;
+    }
     // Check if the repository using custom domain or is not the default GitHub Pages repo
     if (!cname && github_1.context.repo.repo !== `${github_1.context.repo.owner}.github.io`) {
         core.info('Modifying index.html for this repository...');
