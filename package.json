@@ -1,7 +1,7 @@
 {
   "name": "blazor-github-page",
   "description": "GitHub Pages Blazor WASM",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "author": "",
   "private": true,
   "homepage": "https://github.com/na1307/blazor-github-pages",

@@ -112,7 +112,7 @@ jobs:
 
 ## Inputs and Outputs
 
-This action has two inputs and one output.
+This action has three inputs and one output.
 
 ### Inputs
 
@@ -121,7 +121,10 @@ This action has two inputs and one output.
 `publish-path`: Path to output in the Publish step. Most of the time, you can leave this as the default `_out`. However,
 you can specify a custom path if needed for your project structure or workflow requirements.
 
-> **Note:** Inputs `main-repo` and `fix-404` have been **deprecated** as of version v3.
+`gh-token`: The Github Token. Used to determine whether the domain of the repository pages is a GitHub hosted domain or
+a custom domain.
+
+> **Note:** Inputs `main-repo` and `fix-404` have been **deprecated** as of version v3 and **removed** as of version v4.
 > This action now:
 > - Automatically detects if the repository is the default Pages repository (username.github.io).
 > - Modifies `404.html` if it exists.

@@ -11,20 +11,10 @@ inputs:
     required: true
   publish-path:
     description: Path to output in Publish step
-    required: true
     default: _out
-  main-repo:
-    description:
-      Set to true only when running this action from the default GitHub Pages
-      repository ({ID}.github.io).
-    deprecationMessage: This input is deprecated. This input no longer has any effect.
-    default: 'false'
-  fix-404:
-    description:
-      Whether to apply repository-specific modifications to 404.html as well.
-      This only takes effect when main-repo is false.
-    deprecationMessage: This input is deprecated. This input no longer has any effect.
-    default: 'true'
+  gh-token:
+    description: The GitHub Token.
+    default: ${{ github.token }}
 
 outputs:
   wwwroot-path:

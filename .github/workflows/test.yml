@@ -29,7 +29,7 @@ jobs:
       - name: Run Jest Tests
         run: pnpm ci-test --coverage
       - name: SonarCloud
-        run: pnpm sonarscanner -- -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+        run: pnpm sonarscanner -Dsonar.token=${{ secrets.SONAR_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
