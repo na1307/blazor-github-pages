@@ -80,20 +80,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 9.0.x
       - name: Prepare Blazor WASM for GitHub Pages
-        uses: na1307/blazor-github-pages@v3
+        uses: na1307/blazor-github-pages@v4
         id: prepare
         with:
           project-path: MyBlazorApp/MyBlazorApp.csproj
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ${{ steps.prepare.outputs.wwwroot-path }}
 
