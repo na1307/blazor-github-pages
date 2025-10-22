@@ -1,23 +1,27 @@
-import {exec} from "@actions/exec";
-import {getInput, info, setFailed, setOutput, warning} from "@actions/core";
-import * as fs from "node:fs";
-import path from "node:path";
-import {context, getOctokit} from "@actions/github";
+import { exec } from '@actions/exec'
+import { getInput, info, setFailed, setOutput, warning } from '@actions/core'
+import * as fs from 'node:fs'
+import path from 'node:path'
+import { context, getOctokit } from '@actions/github'
 
 export async function main(): Promise<void> {
     const dotnet = 'dotnet'
 
     // Validate `dotnet` installation
     try {
-        await exec(dotnet, ['--info'], {silent: true})
-    } catch (error: any) {
-        setFailed(`dotnet command failed (may be not found): ${error.message}`)
+        await exec(dotnet, ['--info'], { silent: true })
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            setFailed(`dotnet command failed (may be not found): ${error.message}`)
+        } else {
+            setFailed(`dotnet command failed (may be not found): ${String(error)}`)
+        }
 
         return
     }
 
     // Get Project path
-    const projectPath = getInput('project-path', {required: true, trimWhitespace: true})
+    const projectPath = getInput('project-path', { required: true, trimWhitespace: true })
 
     info(`Project Path: ${projectPath}`)
 
@@ -33,8 +37,12 @@ export async function main(): Promise<void> {
 
     try {
         await exec(dotnet, ['restore', `"${projectPath}"`])
-    } catch (error: any) {
-        setFailed(`Restore failed: ${error.message}`)
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            setFailed(`Restore failed: ${error.message}`)
+        } else {
+            setFailed(`Restore failed: ${String(error)}`)
+        }
 
         return
     }
@@ -44,8 +52,12 @@ export async function main(): Promise<void> {
 
     try {
         await exec(dotnet, ['build', `"${projectPath}"`, '--no-restore', '-c', 'Release'])
-    } catch (error: any) {
-        setFailed(`Build failed: ${error.message}`)
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            setFailed(`Build failed: ${error.message}`)
+        } else {
+            setFailed(`Build failed: ${String(error)}`)
+        }
 
         return
     }
@@ -58,8 +70,12 @@ export async function main(): Promise<void> {
 
     try {
         await exec(dotnet, ['publish', `"${projectPath}"`, '--no-build', '-c', 'Release', '-o', `"${publishPath}"`])
-    } catch (error: any) {
-        setFailed(`Publish failed: ${error.message}`)
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            setFailed(`Publish failed: ${error.message}`)
+        } else {
+            setFailed(`Publish failed: ${String(error)}`)
+        }
 
         return
     }
@@ -82,8 +98,8 @@ export async function main(): Promise<void> {
     try {
         const ok = getOctokit(getInput('gh-token'))
         cname = (await ok.request('GET /repos/{owner}/{repo}/pages', context.repo)).data.cname
-    } catch (error: any) {
-        warning(error)
+    } catch (error: unknown) {
+        warning(String(error))
         cname = null
     }
 
@@ -92,8 +108,7 @@ export async function main(): Promise<void> {
         info('Modifying index.html for this repository...')
 
         const indexHtml = path.join(wwwroot, 'index.html')
-        const indexFileContent = fs.readFileSync(indexHtml, 'utf8')
-            .replaceAll('base href="/"', `base href="/${context.repo.repo}/"`)
+        const indexFileContent = fs.readFileSync(indexHtml, 'utf8').replaceAll('base href="/"', `base href="/${context.repo.repo}/"`)
 
         fs.writeFileSync(indexHtml, indexFileContent)
 
@@ -102,8 +117,7 @@ export async function main(): Promise<void> {
         if (fs.existsSync(fourOhFourHtml)) {
             info('Modifying 404.html for this repository...')
 
-            const fourFileContent = fs.readFileSync(fourOhFourHtml, 'utf8')
-                .replaceAll('/?p=/', `/${context.repo.repo}/?p=/`)
+            const fourFileContent = fs.readFileSync(fourOhFourHtml, 'utf8').replaceAll('/?p=/', `/${context.repo.repo}/?p=/`)
 
             fs.writeFileSync(fourOhFourHtml, fourFileContent)
         }

@@ -3,7 +3,7 @@
  */
 
 import * as main from '../src/main.ts'
-import {describe, expect, it, vitest} from "vitest";
+import { describe, expect, it, vitest } from 'vitest'
 
 describe('index', () => {
     it('calls main when imported', async () => {
