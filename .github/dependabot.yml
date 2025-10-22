@@ -3,7 +3,10 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
+      day: wednessday
+      time: "09:00"
+      timezone: Asia/Seoul
     assignees:
       - na1307
     pull-request-branch-name:
@@ -17,18 +20,6 @@ updates:
       - dependency-name: "@types/node"
         update-types:
           - "version-update:semver-major"
-
-  - package-ecosystem: dotnet-sdk
-    directory: /
-    schedule:
-      interval: weekly
-      day: wednesday
-      time: "09:00"
-      timezone: Asia/Seoul
-    assignees:
-      - na1307
-    pull-request-branch-name:
-      separator: _
 
   - package-ecosystem: github-actions
     directory: /

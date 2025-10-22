@@ -1,19 +1,30 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "rootDir": "./src",
-    "moduleResolution": "NodeNext",
-    "baseUrl": "./",
-    "sourceMap": true,
+    "module": "nodenext",
+    "lib": ["ES2022"],
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
     "outDir": "./dist",
-    "noImplicitAny": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+
+    /* nodenext mode */
+    "moduleResolution": "nodenext",
+    "verbatimModuleSyntax": true,
+
+    /* Linting */
     "strict": true,
-    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
     "newLine": "lf"
   },
-  "exclude": ["./dist", "./node_modules", "./__tests__", "./coverage"]
+  "include": ["src"]
 }

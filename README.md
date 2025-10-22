@@ -86,7 +86,7 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: Prepare Blazor WASM for GitHub Pages
-        uses: na1307/blazor-github-pages@v4
+        uses: na1307/blazor-github-pages@v5
         id: prepare
         with:
           project-path: MyBlazorApp/MyBlazorApp.csproj

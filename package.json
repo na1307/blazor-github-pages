@@ -1,9 +1,10 @@
 {
-  "name": "blazor-github-page",
+  "name": "blazor-github-pages",
   "description": "GitHub Pages Blazor WASM",
-  "version": "4.0.0",
-  "author": "",
   "private": true,
+  "version": "5.0.0",
+  "author": "Bluehill",
+  "license": "MIT",
   "homepage": "https://github.com/na1307/blazor-github-pages",
   "repository": {
     "type": "git",
@@ -23,57 +24,26 @@
   "engines": {
     "node": ">=24"
   },
+  "type": "module",
+  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "bundle": "pnpm package",
-    "ci-test": "jest",
-    "package": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "package": "tsc && vite build",
     "package:watch": "pnpm package -- --watch",
-    "sonarscanner": "sonar-scanner",
-    "test": "jest"
+    "sonar": "sonar",
+    "test": "vitest",
+    "ci-test": "vitest"
   },
-  "license": "MIT",
-  "jest": {
-    "preset": "ts-jest",
-    "verbose": true,
-    "clearMocks": true,
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "js",
-      "ts"
-    ],
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/"
-    ],
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "coverageReporters": [
-      "json-summary",
-      "text",
-      "lcov"
-    ],
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "./src/**"
-    ]
+  "devDependencies": {
+    "@sonar/scan": "^4.3.2",
+    "@types/node": "^24.9.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.11",
+    "vitest": "^4.0.1"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^6.0.1"
-  },
-  "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "@types/node": "^24.6.2",
-    "@vercel/ncc": "^0.38.4",
-    "jest": "^30.2.0",
-    "sonarqube-scanner": "^4.3.2",
-    "ts-jest": "^29.4.4",
-    "typescript": "^5.9.3"
-  },
-  "packageManager": "pnpm@10.18.0"
+  }
 }

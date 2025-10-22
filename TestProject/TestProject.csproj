@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bluehill.Blazor.GHPages" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
+    <PackageReference Include="Bluehill.Blazor.GHPages" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.10" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

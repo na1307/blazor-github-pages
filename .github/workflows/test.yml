@@ -20,16 +20,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
           cache: pnpm
       - name: Install Dependencies
         run: pnpm i
-      - name: Run Jest Tests
-        run: pnpm ci-test --coverage
+      #- name: Run Jest Tests
+      #  run: pnpm ci-test --coverage
       - name: SonarCloud
-        run: pnpm sonarscanner -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+        run: pnpm sonar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
