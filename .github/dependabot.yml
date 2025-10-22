@@ -4,7 +4,7 @@ updates:
     directory: /
     schedule:
       interval: weekly
-      day: wednessday
+      day: wednesday
       time: "09:00"
       timezone: Asia/Seoul
     assignees:
