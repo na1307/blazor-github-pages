@@ -161,6 +161,15 @@ describe('Action Logic Scenarios', () => {
 
         expect(writeFileSyncMock).not.toHaveBeenCalled()
     })
+
+    it('should not modify 404.html if it does not exist', async () => {
+        setupMocks({ repoName: 'SimpleRandom', cname: null, fourOhFourExists: false })
+
+        await main()
+
+        expect(writeFileSyncMock).toHaveBeenCalledWith('_out/wwwroot/index.html', '<html><head><base href="/SimpleRandom/" /></head></html>')
+        expect(writeFileSyncMock).not.toHaveBeenCalledWith('_out/wwwroot/404.html', expect.any(String))
+    })
 })
 
 // Test suite for various failure conditions to ensure the action fails gracefully.
@@ -187,7 +196,7 @@ describe('Failure Cases', () => {
 
     it('should fail on dotnet restore error', async () => {
         setupMocks()
-        execMock.mockImplementation(async (args?: string[]) => (args?.includes('restore') ? Promise.reject(new Error('restore failed')) : 0))
+        execMock.mockImplementation(async (_cmd: string, args?: string[]) => (args?.includes('restore') ? Promise.reject(new Error('restore failed')) : 0))
 
         await main()
 
@@ -196,7 +205,7 @@ describe('Failure Cases', () => {
 
     it('should fail on dotnet build error', async () => {
         setupMocks()
-        execMock.mockImplementation(async (args?: string[]) => (args?.includes('build') ? Promise.reject(new Error('build failed')) : 0))
+        execMock.mockImplementation(async (_cmd: string, args?: string[]) => (args?.includes('build') ? Promise.reject(new Error('build failed')) : 0))
 
         await main()
 
@@ -205,7 +214,7 @@ describe('Failure Cases', () => {
 
     it('should fail on dotnet publish error', async () => {
         setupMocks()
-        execMock.mockImplementation(async (args?: string[]) => (args?.includes('publish') ? Promise.reject(new Error('publish failed')) : 0))
+        execMock.mockImplementation(async (_cmd: string, args?: string[]) => (args?.includes('publish') ? Promise.reject(new Error('publish failed')) : 0))
 
         await main()
 
@@ -223,8 +232,44 @@ describe('Failure Cases', () => {
         setupMocks({ repoName: 'SimpleRandom', octokitError: new Error('API error') })
         await main()
 
-        expect(warningMock).toHaveBeenCalledWith(new Error('API error'))
+        expect(warningMock).toHaveBeenCalledWith('Error: API error')
         // Should proceed assuming it's a sub-repo without a CNAME
         expect(writeFileSyncMock).toHaveBeenCalledWith('_out/wwwroot/index.html', '<html><head><base href="/SimpleRandom/" /></head></html>')
+    })
+
+    it('should fail with a string error if dotnet is not found', async () => {
+        setupMocks()
+        execMock.mockImplementation(async (cmd: string) => (cmd === 'dotnet' ? Promise.reject('dotnet not found') : 0))
+
+        await main()
+
+        expect(setFailedMock).toHaveBeenCalledWith('dotnet command failed (may be not found): dotnet not found')
+    })
+
+    it('should fail with a string error on dotnet restore', async () => {
+        setupMocks()
+        execMock.mockImplementation(async (_cmd: string, args?: string[]) => (args?.includes('restore') ? Promise.reject('restore failed') : 0))
+
+        await main()
+
+        expect(setFailedMock).toHaveBeenCalledWith('Restore failed: restore failed')
+    })
+
+    it('should fail with a string error on dotnet build', async () => {
+        setupMocks()
+        execMock.mockImplementation(async (_cmd: string, args?: string[]) => (args?.includes('build') ? Promise.reject('build failed') : 0))
+
+        await main()
+
+        expect(setFailedMock).toHaveBeenCalledWith('Build failed: build failed')
+    })
+
+    it('should fail with a string error on dotnet publish', async () => {
+        setupMocks()
+        execMock.mockImplementation(async (_cmd: string, args?: string[]) => (args?.includes('publish') ? Promise.reject('publish failed') : 0))
+
+        await main()
+
+        expect(setFailedMock).toHaveBeenCalledWith('Publish failed: publish failed')
     })
 })
