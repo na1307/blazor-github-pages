@@ -2,7 +2,7 @@
   "name": "blazor-github-pages",
   "description": "GitHub Pages Blazor WASM",
   "private": true,
-  "version": "5.0.0",
+  "version": "4.0.0",
   "author": "Bluehill",
   "license": "MIT",
   "homepage": "https://github.com/na1307/blazor-github-pages",

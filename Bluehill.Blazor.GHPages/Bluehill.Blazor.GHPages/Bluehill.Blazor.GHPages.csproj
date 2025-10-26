@@ -9,8 +9,8 @@
     <RepositoryUrl>https://github.com/na1307/Bluehill.Blazor.GHPages</RepositoryUrl>
     <StaticWebAssetBasePath Condition="$(StaticWebAssetBasePath) == ''">/</StaticWebAssetBasePath>
     <AssemblyVersion>1</AssemblyVersion>
-    <FileVersion>1.0.2</FileVersion>
-    <Version>1.0.2</Version>
+    <FileVersion>1.0.3</FileVersion>
+    <Version>1.0.3</Version>
   </PropertyGroup>
   <ItemGroup>
     <SupportedPlatform Include="browser"/>
