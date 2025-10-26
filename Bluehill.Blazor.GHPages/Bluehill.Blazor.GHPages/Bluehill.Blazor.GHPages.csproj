@@ -6,7 +6,7 @@
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/na1307/Bluehill.Blazor.GHPages</RepositoryUrl>
+    <RepositoryUrl>https://github.com/na1307/blazor-github-pages</RepositoryUrl>
     <StaticWebAssetBasePath Condition="$(StaticWebAssetBasePath) == ''">/</StaticWebAssetBasePath>
     <AssemblyVersion>1</AssemblyVersion>
     <FileVersion>1.0.3</FileVersion>
