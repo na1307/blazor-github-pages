@@ -30,23 +30,22 @@
     "bundle": "pnpm package",
     "package": "tsc && vite build",
     "package:watch": "pnpm package -- --watch",
-    "sonar": "sonar",
     "test": "vitest watch",
     "ci-test": "vitest run",
-    "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"**/*.ts\""
+    "lint": "eslint",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@sonar/scan": "^4.3.2",
     "@types/node": "^24.9.1",
-    "@vitest/coverage-v8": "4.0.1",
+    "@vitest/coverage-v8": "4.0.4",
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.6.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.2",
-    "vite": "^7.1.11",
-    "vitest": "^4.0.1"
+    "vite": "^7.1.12",
+    "vitest": "^4.0.4"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",

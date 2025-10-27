@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import { resolve } from 'node:path'
 import { builtinModules } from 'node:module'
@@ -17,6 +18,13 @@ export default defineConfig({
                 inlineDynamicImports: true
             },
             preserveSymlinks: true
+        }
+    },
+    test: {
+        coverage: {
+            include: ['src/*.ts'],
+            provider: 'v8',
+            reporter: ['lcovonly']
         }
     }
 })
