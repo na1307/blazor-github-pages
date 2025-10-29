@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@sonar/scan": "^4.3.2",
-    "@types/node": "^24.9.1",
+    "@types/node": "^24.9.2",
     "@vitest/coverage-v8": "4.0.4",
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
