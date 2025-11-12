@@ -37,15 +37,15 @@
   },
   "devDependencies": {
     "@sonar/scan": "^4.3.2",
-    "@types/node": "^24.10.0",
-    "@vitest/coverage-v8": "4.0.7",
+    "@types/node": "^24.10.1",
+    "@vitest/coverage-v8": "4.0.8",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.6.2",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.3",
-    "vite": "^7.1.12",
-    "vitest": "^4.0.7"
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.2",
+    "vitest": "^4.0.8"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
