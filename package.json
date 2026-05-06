@@ -36,16 +36,16 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@sonar/scan": "^4.3.2",
-    "@types/node": "^24.10.0",
-    "@vitest/coverage-v8": "4.0.7",
-    "eslint": "^9.39.1",
+    "@sonar/scan": "^4.3.6",
+    "@types/node": "^24.12.2",
+    "@vitest/coverage-v8": "4.1.5",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.6.2",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.3",
-    "vite": "^7.1.12",
-    "vitest": "^4.0.7"
+    "prettier": "^3.8.3",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.10",
+    "vitest": "^4.1.5"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
